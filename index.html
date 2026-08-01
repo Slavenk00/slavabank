@@ -771,7 +771,12 @@
         // Попап кредита
         function showPopup() {
             document.getElementById('creditPopup').classList.add('active');
-        }
+            // Звук для кнопки "Хочу кредит"
+            try {
+                const audio = new Audio('dobroe.mp3');
+                audio.play().catch(e => console.log('Звук не воспроизведён'));
+            } catch(e) {}
+        }    
         function closePopup() {
             document.getElementById('creditPopup').classList.remove('active');
         }
