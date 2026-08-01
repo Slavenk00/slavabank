@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Слава-Банк — главный финансовый институт вашей компании</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #0a0806;
+            color: #d4c5a0;
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+        }
+        a {
+            color: #f0d080;
+            text-decoration: none;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        header {
+            background: linear-gradient(180deg, #1a1308 0%, #0a0806 100%);
+            border-bottom: 2px solid #b89840;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-weight: 900;
+            font-size: 2rem;
+            color: #f0d080;
+            text-shadow: 0 0 20px rgba(180, 140, 60, 0.3);
+            letter-spacing: 4px;
+        }
+        .logo span {
+            font-weight: 400;
+            font-size: 0.8rem;
+            display: block;
+            color: #b89840;
+            letter-spacing: 2px;
+        }
+        nav {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        nav a {
+            font-family: 'Cinzel', serif;
+            font-weight: 400;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 5px 0;
+            border-bottom: 2px solid transparent;
+            transition: 0.3s;
+        }
+        nav a:hover {
+            border-bottom-color: #f0d080;
+            color: #fff5e0;
+        }
+        .hero {
+            padding: 80px 0 60px;
+            text-align: center;
+            background: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M20 20 L80 20 L80 80 L20 80 Z" stroke="%23b89840" stroke-width="1" fill="none" opacity="0.1"/><circle cx="50" cy="50" r="30" stroke="%23b89840" stroke-width="1" fill="none" opacity="0.1"/></svg>') repeat;
+        }
+        .hero h1 {
+            font-family: 'Cinzel', serif;
+            font-weight: 900;
+            font-size: 3.5rem;
+            color: #f0d080;
+            text-shadow: 0 4px 30px rgba(180,140,60,0.4);
+            margin-bottom: 20px;
+            letter-spacing: 6px;
+        }
+        .hero .subtitle {
+            font-size: 1.4rem;
+            font-weight: 300;
+            color: #c4b090;
+            margin-bottom: 30px;
+        }
+        .hero .description {
+            max-width: 700px;
+            margin: 0 auto 40px;
+            font-size: 1.1rem;
+            color: #b0a088;
+            line-height: 1.8;
+        }
+        .btn {
+            display: inline-block;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            background: linear-gradient(145deg, #b89840, #8a6f2a);
+            color: #0a0806;
+            padding: 16px 48px;
+            border-radius: 50px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-size: 1rem;
+            border: 2px solid #f0d080;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 0 30px rgba(180,140,60,0.2);
+            margin: 8px;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 50px rgba(180,140,60,0.5);
+            background: #f0d080;
+            border-color: #fff;
+        }
+        .btn-secondary {
+            background: #3a2a1a;
+            border-color: #5a4a3a;
+            color: #b0a088;
+            box-shadow: none;
+        }
+        .btn-secondary:hover {
+            background: #5a4a3a;
+            border-color: #b89840;
+            color: #f0d080;
+            box-shadow: 0 0 30px rgba(180,140,60,0.2);
+        }
+        section {
+            padding: 70px 0;
+            border-bottom: 1px solid #2a2018;
+        }
+        section:last-of-type {
+            border-bottom: none;
+        }
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 2.4rem;
+            color: #f0d080;
+            text-align: center;
+            margin-bottom: 50px;
+            letter-spacing: 4px;
+            text-shadow: 0 2px 10px rgba(180,140,60,0.2);
+        }
+        .section-title small {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: #8a7a60;
+            letter-spacing: 2px;
+            margin-top: 5px;
+        }
+        .quotes {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        .quote-card {
+            background: #1a1308;
+            border-left: 4px solid #b89840;
+            padding: 25px 30px;
+            max-width: 350px;
+            border-radius: 8px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+            transition: 0.3s;
+        }
+        .quote-card:hover {
+            transform: translateY(-5px);
+            border-left-color: #f0d080;
+        }
+        .quote-card p {
+            font-size: 1rem;
+            font-style: italic;
+            color: #e0d0b0;
+            margin-bottom: 12px;
+        }
+        .quote-card .author {
+            font-weight: 600;
+            color: #b89840;
+            font-style: normal;
+            font-size: 0.9rem;
+        }
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        .team-card {
+            background: #1a1308;
+            border-radius: 12px;
+            padding: 30px 20px;
+            text-align: center;
+            border: 1px solid #2a2018;
+            transition: 0.3s;
+        }
+        .team-card:hover {
+            border-color: #b89840;
+            box-shadow: 0 0 30px rgba(180,140,60,0.1);
+        }
+        .team-card .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: #2a2018;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: #f0d080;
+            border: 2px solid #b89840;
+        }
+        .team-card h3 {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            color: #f0d080;
+            font-size: 1.2rem;
+        }
+        .team-card .position {
+            color: #8a7a60;
+            font-size: 0.9rem;
+            margin: 5px 0 15px;
+        }
+        .team-card .quote {
+            font-style: italic;
+            color: #c4b090;
+            font-size: 0.95rem;
+            border-top: 1px solid #2a2018;
+            padding-top: 15px;
+        }
+        .principles-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .principle-item {
+            background: #1a1308;
+            border-radius: 8px;
+            padding: 25px;
+            border-left: 4px solid #b89840;
+            transition: 0.3s;
+        }
+        .principle-item:hover {
+            border-left-color: #f0d080;
+            transform: translateX(5px);
+        }
+        .principle-item .num {
+            font-family: 'Cinzel', serif;
+            font-weight: 900;
+            color: #f0d080;
+            font-size: 1.8rem;
+            opacity: 0.4;
+            margin-right: 15px;
+        }
+        .principle-item h4 {
+            display: inline;
+            font-size: 1.1rem;
+            color: #e0d0b0;
+        }
+        .principle-item p {
+            margin-top: 10px;
+            color: #b0a088;
+            font-size: 0.95rem;
+        }
+        .deal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .deal-card {
+            background: #1a1308;
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid #2a2018;
+            transition: 0.3s;
+        }
+        .deal-card:hover {
+            border-color: #b89840;
+        }
+        .deal-card h4 {
+            color: #f0d080;
+            font-family: 'Cinzel', serif;
+            margin-bottom: 10px;
+        }
+        .deal-card p {
+            color: #b0a088;
+            font-size: 0.95rem;
+        }
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .faq-item {
+            background: #1a1308;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            padding: 20px 25px;
+            border-left: 4px solid #2a2018;
+            transition: 0.3s;
+        }
+        .faq-item:hover {
+            border-left-color: #b89840;
+        }
+        .faq-item strong {
+            color: #f0d080;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .faq-item p {
+            color: #b0a088;
+            margin: 0;
+        }
+        .contacts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+        .contact-block {
+            background: #1a1308;
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid #2a2018;
+        }
+        .contact-block h4 {
+            color: #b89840;
+            font-family: 'Cinzel', serif;
+            margin-bottom: 10px;
+        }
+        .contact-block p {
+            color: #b0a088;
+        }
+        .contact-form {
+            max-width: 500px;
+            margin: 40px auto 0;
+            background: #1a1308;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #2a2018;
+        }
+        .contact-form input, .contact-form button {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            background: #0a0806;
+            border: 1px solid #2a2018;
+            color: #d4c5a0;
+            font-family: 'Open Sans', sans-serif;
+            border-radius: 6px;
+        }
+        .contact-form input:focus {
+            border-color: #b89840;
+            outline: none;
+        }
+        .contact-form button {
+            background: #b89840;
+            color: #0a0806;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: 'Cinzel', serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .contact-form button:hover {
+            background: #f0d080;
+        }
+        footer {
+            background: #0a0806;
+            border-top: 1px solid #2a2018;
+            padding: 40px 0;
+            text-align: center;
+            color: #5a4e3a;
+            font-size: 0.9rem;
+        }
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+        .popup-overlay.active {
+            display: flex;
+        }
+        .popup {
+            background: #1a1308;
+            border: 2px solid #b89840;
+            border-radius: 20px;
+            padding: 40px 50px;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 0 80px rgba(180,140,60,0.2);
+        }
+        .popup h2 {
+            font-family: 'Cinzel', serif;
+            color: #f0d080;
+            margin-bottom: 20px;
+        }
+        .popup p {
+            color: #c4b090;
+            margin-bottom: 30px;
+        }
+        .popup .btn {
+            padding: 12px 40px;
+            font-size: 0.9rem;
+        }
+        .secret-area {
+            text-align: center;
+            margin: 20px 0 10px;
+            opacity: 0.6;
+        }
+        .secret-area input {
+            background: #0a0806;
+            border: 1px solid #2a2018;
+            color: #d4c5a0;
+            padding: 8px 15px;
+            border-radius: 4px;
+            width: 200px;
+        }
+        .secret-area button {
+            background: #b89840;
+            border: none;
+            color: #0a0806;
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .secret-area .msg {
+            font-size: 0.8rem;
+            margin-top: 5px;
+        }
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        @media (max-width: 768px) {
+            .header-inner {
+                flex-direction: column;
+                gap: 15px;
+            }
+            nav {
+                justify-content: center;
+                gap: 15px;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .quote-card {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Попап "Хочу кредит" -->
+    <div class="popup-overlay" id="creditPopup">
+        <div class="popup">
+            <h2>💰 Поздравляем!</h2>
+            <p>Вы уже должны нам <strong>100 рублей</strong> за просмотр этой страницы. Процентная ставка — 50% в минуту.</p>
+            <button class="btn" onclick="closePopup()">Принять судьбу</button>
+        </div>
+    </div>
+
+    <!-- Попап "Нет" (списать кредит) -->
+    <div class="popup-overlay" id="noPopup">
+        <div class="popup">
+            <h2 style="color: #f66;">❌ НЕТ</h2>
+            <p>Списание кредита невозможно. Вы будете должны до скончания веков.</p>
+            <button class="btn" onclick="closeNoPopup()">Смириться</button>
+        </div>
+    </div>
+
+    <!-- Попап для секретного фото -->
+    <div class="popup-overlay" id="photoPopup">
+        <div class="popup" style="max-width:600px; padding:20px;">
+            <h2 style="font-family:'Cinzel',serif; color:#f0d080;">🎉 Секрет открыт!</h2>
+            <div style="margin:20px 0;">
+                <!-- Фото загружается из локального файла foto.png -->
+                <img src="foto.png" alt="секретное фото" style="width:100%; border-radius:12px; border:2px solid #b89840;">
+            </div>
+            <button class="btn" onclick="closePhotoPopup()" style="padding:10px 30px;">Закрыть</button>
+        </div>
+    </div>
+
+    <!-- Шапка -->
+    <header>
+        <div class="container header-inner">
+            <div class="logo">
+                СЛАВА-БАНК
+                <span>главный финансовый институт вашей компании</span>
+            </div>
+            <nav>
+                <a href="#about">О нас</a>
+                <a href="#principles">Принципы</a>
+                <a href="#deals">Сделки</a>
+                <a href="#faq">FAQ</a>
+                <a href="#contacts">Контакты</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Герой с двумя кнопками -->
+    <section class="hero">
+        <div class="container">
+            <h1>Слава-Банк</h1>
+            <p class="subtitle">Мы даём деньги тем, кто не боится потерять друзей</p>
+            <p class="description">
+                Слава-Банк — это не просто банк. Это философия. Мы превращаем ваши долги в наши активы, а вашу дружбу — в наши проценты. Работаем по всему миру, но особенно активно — в вашем чате.
+            </p>
+            <div class="btn-group">
+                <button class="btn" onclick="showPopup()">Хочу кредит</button>
+                <button class="btn btn-secondary" onclick="showNoPopup()">Списать кредит</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Цитаты -->
+    <section style="padding-top: 0;">
+        <div class="container">
+            <div class="quotes">
+                <div class="quote-card">
+                    <p>«Не в деньгах счастье, а в том, чтобы их у тебя было больше, чем у других. Поэтому укради первым».</p>
+                    <span class="author">— Ярослав Безденежный, главный бухгалтер</span>
+                </div>
+                <div class="quote-card">
+                    <p>«Все клиенты равны, но некоторые — равнее. И мы любим тех, кто должен нам больше денег».</p>
+                    <span class="author">— Тимофей Кредитный, начальник отдела по работе с должниками</span>
+                </div>
+                <div class="quote-card">
+                    <p>«Наебать друга — значит помочь ему стать умнее. Мы заботимся о вашем уме, попутно забирая ваши деньги».</p>
+                    <span class="author">— Святослав, основатель и пожизненный директор</span>
+                </div>
+                <div class="quote-card">
+                    <p>«Налоги — это святое. Особенно те, которые никто не видел, но все заплатили».</p>
+                    <span class="author">— Илья Казённый, начальник налоговой службы</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Команда -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                Наша команда
+                <small>лучшие специалисты по вашему обогащению (нашему)</small>
+            </div>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="avatar">👑</div>
+                    <h3>Святослав</h3>
+                    <div class="position">Основатель и пожизненный директор</div>
+                    <div class="quote">«Наебать друга — значит помочь ему стать умнее»</div>
+                </div>
+                <div class="team-card">
+                    <div class="avatar">📊</div>
+                    <h3>Ярослав Безденежный</h3>
+                    <div class="position">Главный бухгалтер</div>
+                    <div class="quote">«Не в деньгах счастье, а в том, чтобы их у тебя было больше»</div>
+                </div>
+                <div class="team-card">
+                    <div class="avatar">💸</div>
+                    <h3>Тимофей Кредитный</h3>
+                    <div class="position">Начальник отдела по работе с должниками</div>
+                    <div class="quote">«Мы любим тех, кто должен нам больше денег»</div>
+                </div>
+                <div class="team-card">
+                    <div class="avatar">📜</div>
+                    <h3>Илья Казённый</h3>
+                    <div class="position">Начальник налоговой службы</div>
+                    <div class="quote">«Налоги — это святое. Особенно те, которые никто не видел»</div>
+                </div>
+                <div class="team-card">
+                    <div class="avatar">🧹</div>
+                    <h3>Жора Шваброчкин</h3>
+                    <div class="position">Уборщик (новичок, испытательный срок)</div>
+                    <div class="quote">«... (голос пока не учитывается)»</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Принципы -->
+    <section id="principles">
+        <div class="container">
+            <div class="section-title">
+                Основные принципы
+                <small>Банковский кодекс Слава-Банка</small>
+            </div>
+            <div class="principles-list">
+                <div class="principle-item">
+                    <span class="num">01</span>
+                    <h4>Общие положения</h4>
+                    <p>Слава-Банк создан для обогащения за счёт друзей.</p>
+                </div>
+                <div class="principle-item">
+                    <span class="num">02</span>
+                    <h4>Иерархия</h4>
+                    <p>Директор решает всё, остальные делают вид, что тоже решают.</p>
+                </div>
+                <div class="principle-item">
+                    <span class="num">03</span>
+                    <h4>Кредитная политика</h4>
+                    <p>Проценты растут быстрее, чем друг оглянется.</p>
+                </div>
+                <div class="principle-item">
+                    <span class="num">04</span>
+                    <h4>Закон обратного грабежа</h4>
+                    <p>Успешная сделка — когда друг в минусе.</p>
+                </div>
+                <div class="principle-item">
+                    <span class="num">05</span>
+                    <h4>Курс и инфляция</h4>
+                    <p>Меняются каждый раз, когда вы собираетесь вернуть долг.</p>
+                </div>
+                <div class="principle-item">
+                    <span class="num">06</span>
+                    <h4>Налоговая служба</h4>
+                    <p>Берёт налог с каждого чиха.</p>
+                </div>
+                <div class="principle-item">
+                    <span class="num">07</span>
+                    <h4>Страховка</h4>
+                    <p>Если вы обманули друга — не выплачивается. Если вас обманули — тоже не выплачивается.</p>
+                </div>
+                <div class="principle-item">
+                    <span class="num">08</span>
+                    <h4>Особые полномочия директора</h4>
+                    <p>Святослав может изменить любой пункт в любой момент.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Сделки -->
+    <section id="deals">
+        <div class="container">
+            <div class="section-title">
+                Успешные сделки
+                <small>истории наших клиентов (которые теперь умнее)</small>
+            </div>
+            <div class="deal-grid">
+                <div class="deal-card">
+                    <h4>Булочка за чужой счёт</h4>
+                    <p>Ярик постоянно просил Илью купить булочку в столовке. Буквально ел за его счёт. Илья терпел, пока Ярик не задолжал целое состояние. Теперь Ярик моет полы в штабе — процентная ставка была слишком высока.</p>
+                </div>
+                <div class="deal-card">
+                    <h4>Машина, которой не стало</h4>
+                    <p>Святослав дал долг Илье на машину. После чего пришёл и забрал эту машину за списание долга. А потом продал её в два раза дороже. Илья остался без машины, но с чистой кредитной историей (почти).</p>
+                </div>
+                <div class="deal-card">
+                    <h4>Операция «Не гулянка»</h4>
+                    <p>Постоянно говорим девочкам, что мы пойдём гулять. А потом у нас появляются дела. И по итогу мы сидим и играем в компы. Девочки в недоумении, мы в плюсе — время сэкономлено, деньги на такси не потрачены.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+        <div class="container">
+            <div class="section-title">
+                Часто задаваемые вопросы
+                <small>и ответы, которые вас разочаруют</small>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <strong>Могу ли я взять кредит, если у меня нет денег?</strong>
+                    <p>Конечно! Именно для этого мы и работаем. Вы берёте у нас, мы у вас — и все в плюсе (особенно мы).</p>
+                </div>
+                <div class="faq-item">
+                    <strong>Какой процент?</strong>
+                    <p>Процент зависит от двух факторов: цели кредита и вашей кредитной истории. Если вы берёте на какую-то ерунду (типа «на булочку» или «на скины в игре») и при этом вечно задерживаете платежи — ставка взлетает до космических значений, потому что мы должны компенсировать риски. Если же цель достойная уважения (например, купить обед для нашего сотрудника или подарить подарок директору) — мы идём навстречу и снижаем процент. Но не обольщайтесь: даже с низким процентом вы всё равно останетесь должны больше, чем планировали. Такова философия Слава-Банка.</p>
+                </div>
+                <div class="faq-item">
+                    <strong>Что будет, если я не верну долг?</strong>
+                    <p>Мы сделаем вид, что забыли, но будем напоминать вам об этом каждый день до конца ваших дней (и даже после).</p>
+                </div>
+                <div class="faq-item">
+                    <strong>Можно ли расплатиться не деньгами?</strong>
+                    <p>Можно — услугами, ресурсами, нюдсами ( + деньги тоже придется вернуть, но позже).</p>
+                </div>
+                <div class="faq-item">
+                    <strong>А честность в приоритете?</strong>
+                    <p>Честность — это когда тебя не поймали. Мы не ловим, мы просто быстрее.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section id="contacts">
+        <div class="container">
+            <div class="section-title">
+                Контакты
+                <small>свяжитесь с нами, если у вас ещё остались деньги</small>
+            </div>
+            <div class="contacts-grid">
+                <div class="contact-block">
+                    <h4>📍 Адрес</h4>
+                    <p>Не скажем. Если вы действительно нужны нам — мы сами вас найдём.</p>
+                </div>
+                <div class="contact-block">
+                    <h4>📞 Телефон</h4>
+                    <p>+7 912 229 70 93 (во всем виноват он, если что)</p>
+                </div>
+                <div class="contact-block">
+                    <h4>✉️ Email</h4>
+                    <p>писать голубиной почтой</p>
+                </div>
+            </div>
+            <div class="contact-form">
+                <h4 style="color: #f0d080; font-family: 'Cinzel', serif; text-align:center; margin-bottom:20px;">Заявка на кредит</h4>
+                <form id="loanForm">
+                    <input type="text" placeholder="Ваше имя" required>
+                    <input type="number" placeholder="Сумма, которую хотите занять (любая, мы дадим меньше)">
+                    <button type="submit">Отправить заявку</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секретный код -->
+    <div class="container">
+        <div class="secret-area">
+            <span style="color:#5a4e3a; font-size:0.8rem;">🔐 секретный вход</span>
+            <div style="margin-top:10px;">
+                <input type="password" id="secretInput" placeholder="введите код">
+                <button onclick="checkSecret()">▶</button>
+            </div>
+            <div id="secretMessage" class="msg"></div>
+        </div>
+    </div>
+
+    <!-- Футер -->
+    <footer>
+        <div class="container">
+            <p>© 2026 Слава-Банк. Все права защищены (особенно наши проценты).</p>
+            <p style="font-size: 0.8rem; margin-top:5px;">Сайт создан в рамках корпоративной философии. Копирование материалов преследуется по закону (шучу, но лучше не рискуйте).</p>
+        </div>
+    </footer>
+
+    <script>
+        // Попап кредита
+        function showPopup() {
+            document.getElementById('creditPopup').classList.add('active');
+        }
+        function closePopup() {
+            document.getElementById('creditPopup').classList.remove('active');
+        }
+        document.getElementById('creditPopup').addEventListener('click', function(e) {
+            if (e.target === this) closePopup();
+        });
+
+        // Попап "Нет" со звуком
+        function showNoPopup() {
+            document.getElementById('noPopup').classList.add('active');
+            playErrorSound();
+        }
+        function closeNoPopup() {
+            document.getElementById('noPopup').classList.remove('active');
+        }
+        document.getElementById('noPopup').addEventListener('click', function(e) {
+            if (e.target === this) closeNoPopup();
+        });
+
+        // Звук ошибки (внешний файл poteral.mp3)
+        function playErrorSound() {
+            try {
+                const audio = new Audio('poteral.mp3');
+                audio.play().catch(e => console.log('Звук не воспроизведён'));
+            } catch(e) {}
+        }
+
+        // Форма заявки
+        document.getElementById('loanForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Ваша заявка принята. Ожидайте звонка. Впрочем, не ожидайте, мы перезвоним, когда вы будете должны больше.');
+            this.reset();
+        });
+
+        // Плавный скролл
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const target = document.getElementById(targetId);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Секретный код
+        function checkSecret() {
+            const input = document.getElementById('secretInput');
+            const msg = document.getElementById('secretMessage');
+            const code = input.value.trim();
+            const secret = 'X09Pg';
+            if (code.toLowerCase() === secret.toLowerCase()) {
+                msg.textContent = '✅ Доступ разрешён!';
+                msg.style.color = '#8f8';
+                document.getElementById('photoPopup').classList.add('active');
+                input.value = '';
+                setTimeout(() => { msg.textContent = ''; }, 3000);
+            } else {
+                msg.textContent = '❌ Неверный код, попробуй ещё';
+                msg.style.color = '#f66';
+                setTimeout(() => { msg.textContent = ''; }, 2000);
+            }
+        }
+        function closePhotoPopup() {
+            document.getElementById('photoPopup').classList.remove('active');
+        }
+        document.getElementById('photoPopup').addEventListener('click', function(e) {
+            if (e.target === this) closePhotoPopup();
+        });
+        document.getElementById('secretInput').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') checkSecret();
+        });
+    </script>
+</body>
+</html>
