@@ -746,6 +746,187 @@
             </div>
         </div>
     </section>
+    <!-- Барабан казино -->
+    <div class="casino-container">
+        <div class="casino-title">🎰 СЛАВА-БАНК КАЗИНО 🎰</div>
+        <div class="slot-machine">
+            <div class="reel" id="reel1">🍒</div>
+            <div class="reel" id="reel2">🍒</div>
+            <div class="reel" id="reel3">🍒</div>
+        </div>
+        <div class="casino-controls">
+            <button class="btn btn-spin" id="spinBtn">КРУТИТЬ</button>
+            <div id="casinoResult" class="casino-result"></div>
+        </div>
+    </div>
+    
+    <style>
+    .casino-container {
+        background: #1a1308;
+        border: 3px solid #b89840;
+        border-radius: 20px;
+        padding: 30px 20px;
+        margin: 30px 0 20px;
+        text-align: center;
+        box-shadow: 0 0 40px rgba(180,140,60,0.1);
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .casino-title {
+        font-family: 'Cinzel', serif;
+        font-size: 1.6rem;
+        color: #f0d080;
+        letter-spacing: 4px;
+        margin-bottom: 25px;
+        text-shadow: 0 0 20px rgba(180,140,60,0.3);
+    }
+    .slot-machine {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-bottom: 25px;
+    }
+    .reel {
+        width: 80px;
+        height: 100px;
+        background: #0a0806;
+        border: 3px solid #b89840;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3.5rem;
+        font-weight: bold;
+        color: #f0d080;
+        box-shadow: inset 0 0 20px rgba(0,0,0,0.8), 0 0 15px rgba(180,140,60,0.2);
+        transition: border-color 0.3s;
+    }
+    .reel.spinning {
+        border-color: #fff5e0;
+        box-shadow: 0 0 30px rgba(255,215,0,0.5);
+    }
+    .btn-spin {
+        background: linear-gradient(145deg, #b89840, #8a6f2a);
+        border: 2px solid #f0d080;
+        color: #0a0806;
+        font-family: 'Cinzel', serif;
+        font-weight: 700;
+        font-size: 1.2rem;
+        padding: 12px 40px;
+        border-radius: 50px;
+        letter-spacing: 3px;
+        cursor: pointer;
+        transition: 0.3s;
+        text-transform: uppercase;
+    }
+    .btn-spin:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 40px rgba(180,140,60,0.6);
+    }
+    .btn-spin:disabled {
+        opacity: 0.5;
+        transform: none;
+        pointer-events: none;
+    }
+    .casino-result {
+        margin-top: 20px;
+        font-family: 'Cinzel', serif;
+        font-size: 1.2rem;
+        min-height: 2.5em;
+        color: #f0d080;
+    }
+    .casino-result.win {
+        color: #ffdd44;
+        text-shadow: 0 0 30px #ffaa00;
+    }
+    .casino-result.lose {
+        color: #8a6f2a;
+    }
+    </style>
+    
+    <script>
+        (function() {
+            const symbols = ['🍒', '🍋', '🍊', '🍇', '🔔', '7️⃣', '💎'];
+            const winSymbol = '7️⃣';
+            const spinBtn = document.getElementById('spinBtn');
+            const reel1 = document.getElementById('reel1');
+            const reel2 = document.getElementById('reel2');
+            const reel3 = document.getElementById('reel3');
+            const resultDiv = document.getElementById('casinoResult');
+            let spinning = false;
+    
+            // ЗВУК ВЫИГРЫША — ФАЙЛ kaz.mp3
+            const winSound = new Audio('kaz.mp3');
+    
+            function getRandomSymbol() {
+                return symbols[Math.floor(Math.random() * symbols.length)];
+            }
+    
+            function spinReel(reelEl, finalSymbol, delay) {
+                return new Promise(resolve => {
+                    reelEl.classList.add('spinning');
+                    let interval = setInterval(() => {
+                        reelEl.textContent = getRandomSymbol();
+                    }, 60);
+                    setTimeout(() => {
+                        clearInterval(interval);
+                        reelEl.textContent = finalSymbol;
+                        reelEl.classList.remove('spinning');
+                        resolve();
+                    }, delay);
+                });
+            }
+    
+            async function spin() {
+                if (spinning) return;
+                spinning = true;
+                spinBtn.disabled = true;
+                resultDiv.textContent = '';
+                resultDiv.className = 'casino-result';
+    
+                const isWin = Math.random() < 0.02;
+    
+                let final1, final2, final3;
+                if (isWin) {
+                    final1 = winSymbol;
+                    final2 = winSymbol;
+                    final3 = winSymbol;
+                } else {
+                    do {
+                        final1 = getRandomSymbol();
+                        final2 = getRandomSymbol();
+                        final3 = getRandomSymbol();
+                    } while (final1 === winSymbol && final2 === winSymbol && final3 === winSymbol);
+                }
+    
+                const delays = [300, 600, 900];
+                await spinReel(reel1, final1, delays[0]);
+                await spinReel(reel2, final2, delays[1]);
+                await spinReel(reel3, final3, delays[2]);
+    
+                if (isWin) {
+                    resultDiv.textContent = '💰 ДЖЕКПОТ! ВЫ ВЫИГРАЛИ! 💰';
+                    resultDiv.className = 'casino-result win';
+                    try {
+                        winSound.currentTime = 0;
+                        winSound.play().catch(e => console.log('Звук не воспроизведён'));
+                    } catch(e) {}
+                } else {
+                    resultDiv.textContent = '😔 Проигрыш. Попробуйте ещё раз (шанс 2%).';
+                    resultDiv.className = 'casino-result lose';
+                }
+    
+                spinning = false;
+                spinBtn.disabled = false;
+            }
+    
+            spinBtn.addEventListener('click', spin);
+            winSound.addEventListener('error', function() {
+                console.warn('Звук kaz.mp3 не найден. Проверьте путь.');
+            });
+        })();
+    </script>
 
     <!-- Секретный код -->
     <div class="container">
